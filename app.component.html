@@ -1,0 +1,79 @@
+<h1 style="text-align: center">Welcome to {{ title }}</h1>
+<h2 style="color: green; text-align:center">First table with 100 Selection</h2>
+<button
+  type="button"
+  class="btn btn-success btn-lg btn-block"
+  (click)="updateHunderedCheck()"
+>
+  Show Players with hundreds
+</button>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Player Name</th>
+      <th scope="col">Hundereds</th>
+      <th scope="col">Wickets</th>
+      <th scope="col">Player Type</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let player of players; let i = index">
+    <!-- For all players OR with hundereds only -->
+    <ng-container *ngIf="!isHunderedCheck || player.hundereds > 0">
+      <tr>
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ player.name }}</td>
+        <td>{{ player.hundereds }}</td>
+        <td>{{ player.wickets }}</td>
+        <td>{{ player.type }}</td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+<h2 style="color: red; text-align:center">
+  Second table with Wicket selection
+</h2>
+<button type="button" class="btn btn-danger btn-lg btn-block">
+  Show players with wickets (TO DO @assignment)
+</button>
+<h2 style="color: blue; text-align:center">Third table with input</h2>
+<div class="input-group btn-outline-secondary">
+  <input
+    class="form-control"
+    placeholder="Type Player Name"
+    [(ngModel)]="playerName"
+  />
+  <div class="input-group-append" id="button-addon4">
+    <button class="btn btn-outline-danger" type="button">
+      Search Player
+    </button>
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Player Name</th>
+        <th scope="col">Hundereds</th>
+        <th scope="col">Wickets</th>
+        <th scope="col">Player Type</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let player of players; let i = index">
+      <ng-container *ngIf="!playerName || player.name.includes(playerName)">
+        <tr>
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ player.name }}</td>
+          <td>{{ player.hundereds }}</td>
+          <td>{{ player.wickets }}</td>
+          <td>{{ player.type }}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+</div>
